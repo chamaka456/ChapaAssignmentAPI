@@ -21,30 +21,51 @@ router.post('/user', (req , res)=> {
     }
     
     const query = `select * from Users where username like ?`;
-    conn.connect(err => {
-        if(!err){
-            conn.query(query,[userName] ,(err , rows )=> {
-                if(!err){
-                    console.log('db data' + rows);
-                    if(rows[0].password === password){
-                        res.send({
-                            status: "Success"
-                        });
-                    }
-                    else {
-                        res.send({
-                            status: "Error"
-                        })
-                    }
+    // conn.connect(err => {
+    //     if(!err){
+    //         conn.query(query,[userName] ,(err , rows )=> {
+    //             if(!err){
+    //                 console.log('db data' + rows);
+    //                 if(rows[0].password === password){
+    //                     res.send({
+    //                         status: "Success"
+    //                     });
+    //                 }
+    //                 else {
+    //                     res.send({
+    //                         status: "Error"
+    //                     })
+    //                 }
                      
-                }
-                else {
-                    console.log('err' + err);
-                }
-            });
-            conn.end();
+    //             }
+    //             else {
+    //                 console.log('err' + err);
+    //             }
+    //         });
+    //         conn.end();
+    //     }
+    // });
+    conn.query(query,[userName] ,(err , rows )=> {
+        if(!err){
+            console.log('db data' + rows);
+            if(rows[0].password === password){
+                res.send({
+                    status: "Success"
+                });
+            }
+            else {
+                res.send({
+                    status: "Error"
+                })
+            }
+             
+        }
+        else {
+            console.log('err' + err);
         }
     });
+    conn.end();
+   
 
     
     
