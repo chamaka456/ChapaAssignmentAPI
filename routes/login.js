@@ -25,7 +25,7 @@ router.post('/user', (req , res)=> {
     conn.query(query,[userName] ,(err , rows )=> {
         if(!err){
             console.log('db data' + rows);
-            if(rows[0].password === password){
+            if(rows.length > 0 && rows[0].password === password){
                 res.send({
                     status: "Success"
                 });
