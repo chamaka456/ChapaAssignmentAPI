@@ -1,12 +1,13 @@
 const express = require('express');
 const login = require('./routes/login');
 const chat = require('./routes/chat');
+const messages = require('./routes/messages');
 const  app = express();
 app.use(express.json());
 
 app.use('/api/login',login);
 app.use('/api/chat',chat);
-
+app.use('/api/messages',messages);
 
 app.get('/', function (req, res) {
   
