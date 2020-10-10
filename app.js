@@ -2,12 +2,15 @@ const express = require('express');
 const login = require('./routes/login');
 const chat = require('./routes/chat');
 const messages = require('./routes/messages');
+const contract = require('./routes/contract');
 const  app = express();
 app.use(express.json());
 
 app.use('/api/login',login);
 app.use('/api/chat',chat);
 app.use('/api/messages',messages);
+app.use('/api/contract',contract);
+
 
 app.get('/', function (req, res) {
   
