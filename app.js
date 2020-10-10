@@ -1,10 +1,11 @@
 const express = require('express');
 const login = require('./routes/login');
+const chat = require('./routes/chat');
 const  app = express();
 app.use(express.json());
 
 app.use('/api/login',login);
-
+app.use('/api/chat',chat);
 
 
 app.get('/', function (req, res) {
